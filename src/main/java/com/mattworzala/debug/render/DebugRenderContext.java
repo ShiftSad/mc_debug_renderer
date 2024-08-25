@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.BufferRenderer;
 import net.minecraft.client.render.Tessellator;
+import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix3f;
@@ -54,8 +55,8 @@ public class DebugRenderContext {
 
     public void begin(@NotNull RenderType renderType) {
         this.renderType = renderType;
-        this.builder = Tessellator.getInstance().getBuffer();
-        this.builder.begin(renderType.drawMode(), renderType.vertexFormat());
+        this.builder = Tessellator.getInstance().begin(renderType.drawMode(), renderType.vertexFormat());
+
         RenderSystem.setShader(renderType.shader());
 
         if (renderType == RenderType.QUADS) {
@@ -77,10 +78,12 @@ public class DebugRenderContext {
     }
 
     public void vertex(float x, float y, float z) {
+
+        WorldRenderer bla;
+
         if (renderType == RenderType.QUADS) {
             builder.vertex(positionMat, x, y, z)
-                    .color(r, g, b, a)
-                    .next();
+                    .color(r, g, b, a);
         } else if (renderType == RenderType.LINES) {
             if (!hasLast) {
                 lastX = x;
@@ -97,13 +100,11 @@ public class DebugRenderContext {
             this.builder.vertex(positionMat, lastX, lastY, lastZ)
                     .color(r, g, b, a)
 //                    .normal(normalMat, dx *= distanceInv, dy *= distanceInv, dz *= distanceInv)
-                    .normal(dx *= distanceInv, dy *= distanceInv, dz *= distanceInv)
-                    .next();
+                    .normal(dx *= distanceInv, dy *= distanceInv, dz *= distanceInv);
             this.builder.vertex(positionMat, x, y, z)
                     .color(r, g, b, a)
 //                    .normal(normalMat, dx, dy, dz)
-                    .normal(dx, dy, dz)
-                    .next();
+                    .normal(dx, dy, dz);
 
             hasLast = false;
         } else {

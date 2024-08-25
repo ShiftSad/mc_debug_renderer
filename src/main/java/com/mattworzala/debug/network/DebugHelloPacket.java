@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 public record DebugHelloPacket(int protocolVersion) implements CustomPayload {
-    public static final CustomPayload.Id<DebugHelloPacket> PACKET_ID = new CustomPayload.Id<>(new Identifier("debug", "hello"));
+    public static final CustomPayload.Id<DebugHelloPacket> PACKET_ID = new CustomPayload.Id<>(Identifier.of("debug", "hello"));
     public static final PacketCodec<RegistryByteBuf, DebugHelloPacket> PACKET_CODEC = PacketCodec.of(DebugHelloPacket::write, DebugHelloPacket::new);
 
     public DebugHelloPacket(@NotNull RegistryByteBuf buf) {

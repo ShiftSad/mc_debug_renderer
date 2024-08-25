@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record DebugShapesPacket(@NotNull List<Operation> operations) implements CustomPayload {
-    public static final CustomPayload.Id<DebugShapesPacket> PACKET_ID = new CustomPayload.Id<>(new Identifier("debug", "shapes"));
+    public static final CustomPayload.Id<DebugShapesPacket> PACKET_ID = new CustomPayload.Id<>(Identifier.of("debug", "shapes"));
     public static final PacketCodec<RegistryByteBuf, DebugShapesPacket> PACKET_CODEC = PacketCodec.of(DebugShapesPacket::write, DebugShapesPacket::new);
 
     public DebugShapesPacket(@NotNull PacketByteBuf buf) {
