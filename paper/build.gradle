@@ -4,17 +4,19 @@ plugins {
 }
 
 group 'com.mattworzala.debug'
-version '1.19.2'
+version '1.0.0'
 
 repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
 }
 
 dependencies {
-    compileOnly 'net.minestom:minestom-snapshots:bcb0301fb1'
-
-    testImplementation 'net.minestom:minestom-snapshots:bcb0301fb1'
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
 }
 
 java {
