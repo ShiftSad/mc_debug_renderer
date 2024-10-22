@@ -16,6 +16,7 @@ import java.util.List;
  * @param color     The color of the line, in ARGB format.
  * @param layer     The layer of the line.
  */
+@SuppressWarnings("UnstableApiUsage")
 public record LineShape(
         @NotNull Type type,
         @NotNull List<Position> points,

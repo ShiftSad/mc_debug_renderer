@@ -5,6 +5,7 @@ import com.mattworzala.debug.Layer;
 import io.papermc.paper.math.Position;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("UnstableApiUsage")
 public record QuadShape(
         @NotNull Position a,
         @NotNull Position b,

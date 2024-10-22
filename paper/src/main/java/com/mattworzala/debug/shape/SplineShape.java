@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("UnstableApiUsage")
 public record SplineShape(
         @NotNull Type type,
         @NotNull List<Position> points,
